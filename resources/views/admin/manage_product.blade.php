@@ -21,28 +21,7 @@
             <div class="card ">
                 <form action="{{route('manage_product_process')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
-                        <label for="category_id" class="control-label ml-4 mb-1">Category id</label>
-                        <select id="category_id" name="category_id" type="text"
-                            value="{{old('category_id',$category_id)}}"
-                            class="form-control {{($errors->any() && $errors->first('category_id'))?'is-invalid':''}} "
-                            aria-required="true" aria-invalid="false">
-                            <option value="">Select Category</option>
-                            @foreach($category as $list)
 
-                            @if($category_id == $list->id)
-                            <option selected value="{{$list->id}}">
-                                @else
-                            <option value="{{$list->id}}">
-                                @endif
-                                {{$list->category_name}}
-                            </option>
-                            @endforeach
-                        </select>
-                        @if($errors->any())
-                        <p class="invalid-feedback">{{$errors->first('category_id')}}</p>
-                        @endif
-                    </div>
                     <div class="form-group">
                         <label for="name" class="control-label ml-4 mb-1">Product Name</label>
                         <input id="name" name="name" type="text" value="{{old('name',$name)}}"
@@ -71,23 +50,50 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="brand" class="control-label ml-4 mb-1 ">Brand</label>
-                        <input id="brand" name="brand" type="text" value="{{old('brand',$brand)}}"
-                            class="form-control {{($errors->any() && $errors->first('brand'))?'is-invalid':''}} "
-                            aria-required="true" aria-invalid="false">
-                        @if($errors->any())
-                        <p class="invalid-feedback">{{$errors->first('brand')}}</p>
-                        @endif
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="category_id" class="control-label ml-4 mb-1">Category id</label>
+                                <select id="category_id" name="category_id" type="text"
+                                    value="{{old('category_id',$category_id)}}"
+                                    class="form-control {{($errors->any() && $errors->first('category_id'))?'is-invalid':''}} "
+                                    aria-required="true" aria-invalid="false">
+                                    <option value="">Select Category</option>
+                                    @foreach($category as $list)
+
+                                    @if($category_id == $list->id)
+                                    <option selected value="{{$list->id}}">
+                                        @else
+                                    <option value="{{$list->id}}">
+                                        @endif
+                                        {{$list->category_name}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if($errors->any())
+                                <p class="invalid-feedback">{{$errors->first('category_id')}}</p>
+                                @endif
+                            </div>
+                            <div class="col-md-4">
+                                <label for="brand" class="control-label ml-4 mb-1 ">Brand</label>
+                                <input id="brand" name="brand" type="text" value="{{old('brand',$brand)}}"
+                                    class="form-control {{($errors->any() && $errors->first('brand'))?'is-invalid':''}} "
+                                    aria-required="true" aria-invalid="false">
+                                @if($errors->any())
+                                <p class="invalid-feedback">{{$errors->first('brand')}}</p>
+                                @endif
+                            </div>
+                            <div class="col-md-4">
+                                <label for="model" class="control-label ml-4 mb-1 ">Model</label>
+                                <input id="model" name="model" type="text" value="{{old('model',$model)}}"
+                                    class="form-control {{($errors->any() && $errors->first('model'))?'is-invalid':''}} "
+                                    aria-required="true" aria-invalid="false">
+                                @if($errors->any())
+                                <p class="invalid-feedback">{{$errors->first('model')}}</p>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="model" class="control-label ml-4 mb-1 ">Model</label>
-                        <input id="model" name="model" type="text" value="{{old('model',$model)}}"
-                            class="form-control {{($errors->any() && $errors->first('model'))?'is-invalid':''}} "
-                            aria-required="true" aria-invalid="false">
-                        @if($errors->any())
-                        <p class="invalid-feedback">{{$errors->first('model')}}</p>
-                        @endif
-                    </div>
+
                     <div class="form-group">
                         <label for="short_desc" class="control-label ml-4 mb-1 ">Short_desc</label>
                         <textarea id="short_desc" name="short_desc" type="text"
